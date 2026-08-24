@@ -3,14 +3,11 @@
 
 
 int powerOfTwo(int n)
-{
-    return (int)pow(2, n);
-}
+{return (int)pow(2, n);}
 
 void getSubnetMask(int prefix, int *m1, int *m2, int *m3, int *m4)
 {
     unsigned int mask;
-
     if (prefix == 0)
         mask = 0;
     else
@@ -30,9 +27,7 @@ int main()
     int hostBits;
     int prefix;
     int defaultPrefix;
-
     int m1, m2, m3, m4;
-
     unsigned int ip;
     unsigned int blockSize;
     unsigned int networkAddress;
@@ -40,10 +35,8 @@ int main()
 
     int i;
 
-
     printf("\nEnter an IP Address (e.g., 192.168.1.1): ");
     scanf("%d.%d.%d.%d", &a, &b, &c, &d);
-
 
     if (a < 0 || a > 255 ||
         b < 0 || b > 255 ||
@@ -53,7 +46,6 @@ int main()
         printf("\nInvalid IP Address!\n");
         return 1;
     }
-
 
     if (a >= 1 && a <= 126)
     {
@@ -132,58 +124,41 @@ int main()
 
 
     printf("SUBNETTING CALCULATION\n");
-
     printf("\nEnter the number of required subnets: ");
     scanf("%d", &subnets);
 
-    if (subnets <= 0)
-    {
+    if (subnets <= 0){
         printf("\nInvalid number of subnets!\n");
         return 1;
     }
 
     borrowedBits = 0;
 
-    while (powerOfTwo(borrowedBits) < subnets)
-    {
+    while (powerOfTwo(borrowedBits) < subnets){
         borrowedBits++;
     }
 
     prefix = defaultPrefix + borrowedBits;
 
-    if (prefix > 30)
-    {
+    if (prefix > 30){
         printf("\nCannot create %d subnets while keeping usable\n", subnets);
         printf("host addresses in every subnet.\n");
         return 1;
     }
 
     hostBits = 32 - prefix;
-
     getSubnetMask(prefix, &m1, &m2, &m3, &m4);
-
     int totalSubnets = powerOfTwo(borrowedBits);
-
     int hostsPerSubnet = powerOfTwo(hostBits) - 2;
-
-
     printf("\nOriginal Prefix        : /%d", defaultPrefix);
     printf("\nRequired Subnets       : %d", subnets);
     printf("\nBorrowed Bits          : %d", borrowedBits);
     printf("\nNew Prefix             : /%d", prefix);
 
-    printf("\n\nSubnet Mask            : %d.%d.%d.%d",
-           m1, m2, m3, m4);
-
-    printf("\nNumber of Subnets      : 2^%d = %d",
-           borrowedBits, totalSubnets);
-
+    printf("\n\nSubnet Mask            : %d.%d.%d.%d",m1, m2, m3, m4);
+    printf("\nNumber of Subnets      : 2^%d = %d",borrowedBits, totalSubnets);
     printf("\nHost Bits per Subnet   : %d", hostBits);
-
-    printf("\nHosts per Subnet       : 2^%d - 2 = %d",
-           hostBits, hostsPerSubnet);
-
-
+    printf("\nHosts per Subnet       : 2^%d - 2 = %d",hostBits, hostsPerSubnet);
     ip = ((unsigned int)a << 24) |
          ((unsigned int)b << 16) |
          ((unsigned int)c << 8) |
@@ -191,17 +166,13 @@ int main()
 
     blockSize = powerOfTwo(hostBits);
 
-
     networkAddress = ip - (ip % blockSize);
-
 
     printf("\nSUBNET INFORMATION\n");
 
-
     printf("\nBlock Size : %u addresses", blockSize);
 
-    for (i = 0; i < totalSubnets; i++)
-    {
+    for (i = 0; i < totalSubnets; i++){
         unsigned int currentNetwork;
         unsigned int currentBroadcast;
         unsigned int firstHost;
@@ -244,7 +215,5 @@ int main()
                (currentBroadcast >> 8) & 255,
                currentBroadcast & 255);
     }
-
-
     return 0;
 }

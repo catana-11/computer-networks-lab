@@ -17,8 +17,7 @@ int main() {
 
     printf("\n\nenter received hamming code msb to lsb: ");
 
-    scanf("%d %d %d %d %d %d %d", 
-        &h[6], &h[5], &h[4], &h[3], &h[2], &h[1], &h[0]);
+    scanf("%d %d %d %d %d %d %d", &h[6], &h[5], &h[4], &h[3], &h[2], &h[1], &h[0]);
 
     int s1 = (h[0] + h[2] + h[4] + h[6]) % 2;
     int s2 = (h[1] + h[2] + h[5] + h[6]) % 2;
