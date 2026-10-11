@@ -3,6 +3,4 @@
 .git
 *.git
 
-script.py
-
-project_dump.txt
+*.out
