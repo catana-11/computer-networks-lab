@@ -69,19 +69,14 @@ def display_routing_tables(dist, next_hop):
 
             print(f"{destination}\t\t{cost}\t{hop}")
 
-
 def main():
 
     print("enter the cost matrix")
     print("use 999 for INF")
-
     cost = []
 
     for i in range(N):
-        row = list(map(int, input(
-            f"enter row {i + 1}: "
-        ).split()))
-
+        row = list(map(int, input(f"enter row {i + 1}: ").split()))
         cost.append(row)
 
     print("\ninitial cost matrix:")
@@ -93,11 +88,9 @@ def main():
 
     print("\nfinal routing tables:")
     display_routing_tables(dist, next_hop)
-
     print("\nshortest path query->")
 
     source = int(input("enter source router int input(0=A, 1=B, 2=C, 3=D): "))
-
     destination = int(input("enter destination router (0=A, 1=B, 2=C, 3=D): "))
 
     if dist[source][destination] == INF:
@@ -115,7 +108,6 @@ def main():
             f"next hop = "
             f"{chr(65 + next_hop[source][destination])}"
         )
-
 
 if __name__ == "__main__":
     main()

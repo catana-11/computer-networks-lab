@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -36,8 +35,6 @@ int main() {
     }
 
     printf("UDP server waiting for message...\n");
-
- 
     int n = recvfrom(server_fd, buffer, sizeof(buffer) - 1, 0,(struct sockaddr *)&client_addr, &addr_len);
 
     if (n >= 0) {
@@ -62,6 +59,5 @@ int main() {
     }
 
     close(server_fd);
-
     return 0;
 }

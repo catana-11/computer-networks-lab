@@ -23,8 +23,6 @@ int main() {
     // sock_stream: Uses a reliable, connection-oriented byte stream, normally TCP
     // 0 : auto selects default protocol for the given domain and type, which  becomes tcp here
 
-
-
     if (sock == -1) {
         perror("Socket creation failed");
         return 1;
@@ -33,22 +31,16 @@ int main() {
     // configure server address
 
     server_addr.sin_family = AF_INET;       // ipv4 addressing
-    
     server_addr.sin_port = htons(8080);     
     /*
-
     Converts port 8080 from the computer's host byte order to network byte order (big-endian).
     Return value: The converted 16-bit unsigned integer.
-    Port numbers identify services or applications on a device. The server must use the same port.
-        
+    Port numbers identify services or applications on a device. The server must use the same port. 
     */
-
     inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr);
-
     /*
     Converts the IPv4 address string "127.0.0.1" into binary form and stores it in server_addr.sin_addr.
     */
-
     // connect to server
     // syntax: connect(socket_descriptor, server_address, address_length);
 
@@ -58,9 +50,7 @@ int main() {
         return 1;
     }
 
-
     // input msg from user
-
     printf("Enter message: ");
     fgets(buffer, sizeof(buffer), stdin);
     buffer[strcspn(buffer, "\n")] = '\0';

@@ -76,13 +76,10 @@ int main() {
     if (n > 0) {
         buffer[n] = '\0';
         printf("Client: %s\n", buffer);
-
         // send reply to client
-
         printf("Enter reply: ");
         fgets(buffer, sizeof(buffer), stdin);
         buffer[strcspn(buffer, "\n")] = '\0';
-
         send(client_fd, buffer, strlen(buffer), 0);
     }
 
